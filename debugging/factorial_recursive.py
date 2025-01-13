@@ -1,31 +1,23 @@
 #!/usr/bin/python3
 import sys
 
+# Description de la fonction factorial
+# La fonction calcule la factorielle d'un nombre entier n en utilisant la récursion.
 def factorial(n):
-    """
-    Fonction pour calculer le factoriel d'un nombre entier.
-
-    Description : 
-        Cette fonction utilise une approche récursive pour calculer le 
-        factoriel d'un nombre entier positif n. Le factoriel de n (noté n!) 
-        est le produit de tous les entiers de 1 à n.
-
-    Paramètres :
-        n (int) : Le nombre entier pour lequel nous voulons calculer le 
-                  factoriel.
-
-    Retour :
-        int : Le factoriel de n. Si n est égal à 0, la fonction retourne 1 
-              (par convention, 0! = 1).
-    """
     if n == 0:
         return 1
     else:
         return n * factorial(n - 1)
 
-# Vérification de l'argument passé via la ligne de commande
-f = factorial(int(sys.argv[1]))
+# Vérification si un argument est passé au script
+if len(sys.argv) < 2:
+    print("Erreur : Veuillez fournir un argument pour calculer la factorielle.")
+    sys.exit(1)  # Arrête le programme si aucun argument n'est fourni
 
-# Affichage du résultat du calcul du factoriel
-print(f)
+# Récupère l'argument et le convertit en entier
+try:
+    f = factorial(int(sys.argv[1]))
+    print(f)
+except ValueError:
+    print("Erreur : L'argument fourni n'est pas un entier valide.")
 
